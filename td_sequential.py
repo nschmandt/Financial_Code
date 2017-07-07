@@ -111,18 +111,32 @@ print(np.mean(expected_return))
 #print(type(win_occurrences))
 #print(type(lose_occurrences[1]))
 
+stratification=[]
+
 for i in range(0, len(lose_occurrences)):
     temp=list(lose_occurrences[i])
-    lose_occurrences[i]=temp.append(0)
+    lose_occurrences[i]=temp + [0]
+    stratification.append(0)
 for i in range(0, len(win_occurrences)):
-    win_occurrences[i]=list(win_occurrences[i]).append(0)
+    temp=list(win_occurrences[i])
+    win_occurrences[i]=temp+[1]
+    stratification.append(1)
 
-print(len(lose_occurrences[1]))
-print(lose_occurrences[1])
 total_occurrences=lose_occurrences+win_occurrences
 
+model=LogisticRegression()
+#model=RandomForestClassifier(150, oob_score=True, n_jobs=-1)
+train, test=sklearn.model_selection.train_test_split(total_occurrences, test_size=.3, stratify=stratification)
 
 
+fit=model.fit(train_X, train_Y)
+test_Y=test['next_change']
+test_X=test[cols_to_use]
+pred=fit.predict(test_X)
+
+#print('Confusion matrix for ' + i)
+#print(pd.DataFrame(sklearn.metrics.confusion_matrix(test_Y, pred), columns=['Pred -', 'Pred +'], index=['Actual -', 'Actual +']))
+conf_matrix=sklearn.metrics.confusion_matrix(test_Y, pred)
 
 
 
