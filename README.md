@@ -1,2 +1,3 @@
 # Financial_Code
-For projects and code related to financial analysis
+The projects in the section are centered around the analysis of TD_sequential, a known trading algorithm, and evaluating its effectiveness and ways to improve it. This is implemented in CloudQuant, but most of the research is done locally on code that was harvested and analyzed here.
+sp500_data_harvest and minute_interval_scrapper are the two pieces of code that I used to collect a list of S&P500 stocks and then a list of the daily trading values from 2010 to July 2017 (the first one) and also the last 12 days of every minute's stock trading parameters (the second). Both are implemented through google finance.
