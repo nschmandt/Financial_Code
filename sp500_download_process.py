@@ -7,7 +7,29 @@ import pandas_datareader.data as web
 import os
 import datetime as datetime
 
+#this code collects the name of the stocks in the S&P 500
 
+# page = requests.get('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies')
+# soup=BeautifulSoup(page.content,'html.parser')
+# table=soup.find('table')
+# table_entries=table.findAll('td')
+#
+# stock_assets=[]
+# for i in range(0, len(table_entries)):
+#     stock_assets.append(table_entries[i].get_text())
+#
+# ticker_symbol=stock_assets[::8]
+# company_name=stock_assets[1::8]
+# company_sector=stock_assets[3::8]
+# company_industry=stock_assets[4::8]
+# stock_assets=pd.DataFrame([ticker_symbol, company_name, company_sector, company_industry], index=\
+#     ['ticker', 'company', 'sector', 'industry'])
+# stock_assets=stock_assets.transpose()
+#
+# os.chdir('C://Users//nts21//Documents//financial_models')
+# stock_assets.to_csv('sp500_2017_list.csv')
+
+#this code takes the S&P 500 output from the previous lines and harvests their stock values since 2010.
 
 os.chdir('/home/nick/datasets/financial')
 ticker_symbol=pd.read_csv('sp500_2017_list.csv', index_col=0)
